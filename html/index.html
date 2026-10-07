@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Game Library</title>
+</head>
+
+<body>
+
+    <header>
+        <div id="logo-library">
+            <h1>Logo</h1>
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="add-games">
+
+            <h2>Adicionar Jogo na Biblioteca</h2>
+
+            <form id="form-game">
+
+                <input id="title" type="text" placeholder="Título" required>
+
+                <input id="genre" type="text" placeholder="Gênero" required>
+
+                <input id="platform" type="text" placeholder="Plataforma" required>
+
+                <input id="release-year" type="date" required>
+
+                <input id="rating" type="number" step="0.01" placeholder="Avaliação do jogo">
+
+                <input id="description" type="text" placeholder="Breve descrição do jogo" required>
+
+                <input id="image-url" type="url" placeholder="URL da imagem de capa do jogo" required>
+
+                <button type="submit">
+                    Adicionar Jogo
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="list-games">
+
+            <h2>Lista dos Jogos</h2>
+
+            <div id="container-games">
+            </div>
+
+        </section>
+
+
+        <!-- AÇÕES -->
+        <section class="actions">
+
+            <div id="find-by-id">
+
+                <h2>Buscar Jogo por ID</h2>
+
+                <div class="search">
+
+                    <input type="number" id="id" placeholder="Digite o ID do jogo">
+
+                    <button id="search-by-id">
+                        Buscar
+                    </button>
+
+                </div>
+
+                <div id="searching-game-id">
+                </div>
+
+            </div>
+
+            <div id="find-by-title">
+
+                <h2>Buscar Jogo pelo Título</h2>
+
+                <div class="search">
+
+                    <input type="text" id="search-title" placeholder="Digite o título do jogo">
+
+                    <button id="search-by-title">
+                        Buscar
+                    </button>
+
+                </div>
+
+                <div id="searching-game-title">
+                </div>
+
+            </div>
+
+            <div id="update-area">
+
+                <h2>Atualizar Jogo</h2>
+
+                <form id="update-form-game">
+
+                    <input id="new-title" type="text" placeholder="Novo título" required>
+
+                    <input id="new-genre" type="text" placeholder="Novo gênero" required>
+
+                    <input id="new-platform" type="text" placeholder="Nova plataforma" required>
+
+                    <input id="new-release-year" type="date" required>
+
+                    <input id="new-rating" type="number" step="0.01" placeholder="Nova avaliação do jogo">
+
+                    <input id="new-description" type="text" placeholder="Nova descrição do jogo" required>
+
+                    <input id="new-image-url" type="url" placeholder="Nova URL da imagem de capa" required>
+
+                    <button type="submit">
+                        Atualizar Jogo
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <p>Game Library © 2026</p>
+
+        <p>
+            Projeto desenvolvido com HTML, CSS, JavaScript e Spring Boot.
+        </p>
+
+    </footer>
+
+
+    <script type="module" src="/js/script.js"></script>
+
+</body>
+
+</html>
