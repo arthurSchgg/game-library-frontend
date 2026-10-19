@@ -221,6 +221,39 @@ form button:hover {
     background-color: #405bea;
 }
 
+.card-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.card-buttons button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-favorite {
+    background-color: #2e7d32; 
+}
+
+.btn-favorite:hover {
+    background-color: #1b5e20;
+}
+
+.btn-delete {
+    background-color: #c62828;
+}
+
+.btn-delete:hover {
+    background-color: #b71c1c;
+}
+
 #update-area {
     grid-column: span 2;
 }
