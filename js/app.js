@@ -29,7 +29,7 @@ async function listingGames() {
             title.innerText = game.title;
 
             const genre = document.createElement("p");
-            genre.innerText = `Gênero: ${game}`;
+            genre.innerText = `Gênero: ${game.genre}`;
 
             const platform = document.createElement("p");
             platform.innerText = `Plataforma: ${game.platform}`;
