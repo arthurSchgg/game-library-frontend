@@ -128,9 +128,8 @@ form button:hover {
 
 .game-card img.game-cover {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    object-position: center;
+    height: 150px;
+    scale: auto;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
