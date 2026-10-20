@@ -10,6 +10,16 @@ function createGameCard(game) {
     const idEl = document.createElement("small");
     idEl.textContent = `ID: ${game.id}`;
 
+    const image = document.createElement("img");
+    image.className = "game-cover";
+    image.alt = game.title;
+
+    if(game.imageUrl) {
+        image.src = game.imageUrl;
+    } else {
+        image.src = "https://via.placeholder.com/300x150/333/fff?text=Sem+Imagem"; 
+    }
+
     const titleEl = document.createElement("h3");
     titleEl.textContent = game.title;
 
@@ -71,7 +81,7 @@ function createGameCard(game) {
 
     btnContainer.append(btnFavorite, btnDelete);
 
-    card.append(idEl, titleEl, genre, platform, releaseYear, rating, description, btnContainer);
+    card.append(idEl, image, titleEl, genre, platform, releaseYear, rating, description, btnContainer);
 
     return card;
 }
