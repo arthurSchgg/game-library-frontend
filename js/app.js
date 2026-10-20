@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:8085/v1/game-library";
 
 // ==========================================
-// FUNÇÃO ÚNICA PARA CRIAR O CARD DO JOGO
+// SINGLE FUNCTION TO CREATE THE GAME CARD
 // ==========================================
 function createGameCard(game) {
     const card = document.createElement("div");
@@ -17,23 +17,23 @@ function createGameCard(game) {
     if(game.imageUrl) {
         image.src = game.imageUrl;
     } else {
-        image.src = "https://via.placeholder.com/300x150/333/fff?text=Sem+Imagem"; 
+        image.src = "https://placehold.co/300x150/333/fff?text=No+Image";  
     }
 
     const titleEl = document.createElement("h3");
     titleEl.textContent = game.title;
 
     const genre = document.createElement("p");
-    genre.textContent = `Gênero: ${game.genre}`;
+    genre.textContent = `Genre: ${game.genre}`;
 
     const platform = document.createElement("p");
-    platform.textContent = `Plataforma: ${game.platform}`;
+    platform.textContent = `Platform: ${game.platform}`;
 
     const releaseYear = document.createElement("p");
-    releaseYear.textContent = `Lançamento: ${game.releaseYear}`;
+    releaseYear.textContent = `Release Year: ${game.releaseYear}`;
 
     const rating = document.createElement("p");
-    rating.textContent = `Avaliação: ${game.rating ?? "—"}`;
+    rating.textContent = `Rating: ${game.rating ?? "—"}`;
 
     const description = document.createElement("p");
     description.textContent = game.description;
@@ -55,7 +55,7 @@ function createGameCard(game) {
                 alert("Error while adding the game to favorites.");
             }
         } catch (error) {
-            console.error("Erro:", error);
+            console.error("Error:", error);
         }
     });
 
@@ -64,7 +64,7 @@ function createGameCard(game) {
     btnDelete.classList.add("btn-delete");
 
     btnDelete.addEventListener("click", async () => {
-        if (!confirm(`Tem certeza que deseja deletar "${game.title}"?`)) return;
+        if (!confirm(`Are you sure you want to delete "${game.title}"?`)) return;
 
         try {
             const response = await fetch(`${API_URL}/${game.id}`, { method: "DELETE" });
@@ -75,7 +75,7 @@ function createGameCard(game) {
                 alert("Error deleting the game.");
             }
         } catch (error) {
-            console.error("Erro:", error);
+            console.error("Error:", error);
         }
     });
 
@@ -87,7 +87,7 @@ function createGameCard(game) {
 }
 
 // ==========================================
-// LISTAGEM GERAL
+// GENERAL LISTING
 // ==========================================
 async function listingGames() {
     try {
@@ -112,14 +112,17 @@ async function listingGames() {
             const card = createGameCard(game);
             container.appendChild(card);
         });
-    } catch (erro) {
-        console.error("Error listing games: ", erro);
+    } catch (error) {
+        console.error("Error listing games: ", error);
         document.getElementById("container-games").innerText = "Error loading games";
     }
 }
 
 listingGames();
 
+// ==========================================
+// ADD GAME (POST)
+// ==========================================
 const form = document.getElementById('form-game');
 
 form.addEventListener('submit', async (event) => {
@@ -133,7 +136,10 @@ form.addEventListener('submit', async (event) => {
         rating: document.getElementById('rating').value
             ? Number(document.getElementById('rating').value)
             : null,
-        description: document.getElementById('description').value
+        description: document.getElementById('description').value,
+        
+        // NOVO: Pega a URL da imagem que o usuário digitou no HTML
+        imageUrl: document.getElementById('image-url').value || null
     };
 
     try {
@@ -155,14 +161,14 @@ form.addEventListener('submit', async (event) => {
         alert("Game registered successfully!");
         form.reset();
         listingGames();
-    } catch (erro) {
-        console.error("Error: ", erro);
+    } catch (error) {
+        console.error("Error: ", error);
         alert("It was not possible to register the game.");
     }
 });
 
 // ==========================================
-// BUSCAR POR ID
+// SEARCH BY ID
 // ==========================================
 const buttonFindId = document.getElementById("search-by-id");
 
@@ -170,7 +176,7 @@ buttonFindId.addEventListener('click', async () => {
     const id = document.getElementById("id").value;
 
     if (!id) {
-        alert("Type a ID");
+        alert("Enter an ID");
         return;
     }
 
@@ -181,7 +187,7 @@ buttonFindId.addEventListener('click', async () => {
         const response = await fetch(`${API_URL}/${id}`);
 
         if (!response.ok) {
-            throw new Error(`Jogo não encontrado. Status: ${response.status}`);
+            throw new Error(`Game not found. Status: ${response.status}`);
         }
 
         const game = await response.json();
@@ -190,8 +196,8 @@ buttonFindId.addEventListener('click', async () => {
         const card = createGameCard(game);
         wrapper.appendChild(card);
 
-    } catch (erro) {
-        console.error("Error finding game: ", erro);
+    } catch (error) {
+        console.error("Error finding game: ", error);
         const errorMessage = document.createElement("p");
         errorMessage.textContent = "Game not found or server error.";
         errorMessage.style.color = "#ff5252";
@@ -200,7 +206,7 @@ buttonFindId.addEventListener('click', async () => {
 });
 
 // ==========================================
-// BUSCAR POR TÍTULO
+// SEARCH BY TITLE
 // ==========================================
 const buttonFindTitle = document.getElementById("search-by-title");
 
@@ -208,7 +214,7 @@ buttonFindTitle.addEventListener('click', async () => {
     const searchTitle = document.getElementById("search-title").value;
 
     if (!searchTitle) {
-        alert("Type a title");
+        alert("Enter a title");
         return;
     }
 
@@ -219,7 +225,7 @@ buttonFindTitle.addEventListener('click', async () => {
         const response = await fetch(`${API_URL}/search?title=${encodeURIComponent(searchTitle)}`);
 
         if (!response.ok) {
-            throw new Error(`Erro no servidor. Status: ${response.status}`);
+            throw new Error(`Server error. Status: ${response.status}`);
         }
 
         const games = await response.json();
@@ -234,8 +240,8 @@ buttonFindTitle.addEventListener('click', async () => {
         const card = createGameCard(game);
         wrapper.appendChild(card);
 
-    } catch (erro) {
-        console.error("Error finding game: ", erro);
+    } catch (error) {
+        console.error("Error finding game: ", error);
         const errorMessage = document.createElement("p");
         errorMessage.textContent = "Game not found or server error.";
         errorMessage.style.color = "#ff5252";
@@ -244,7 +250,7 @@ buttonFindTitle.addEventListener('click', async () => {
 });
 
 // ==========================================
-// ATUALIZAR JOGO (PUT)
+// UPDATE GAME (PUT)
 // ==========================================
 const formUpdate = document.getElementById('update-form-game');
 
@@ -254,7 +260,7 @@ formUpdate.addEventListener('submit', async (event) => {
     const updateId = document.getElementById("update-id").value;
 
     if (!updateId) {
-        alert("Please, enter the ID of the game you wish to update.");
+        alert("Please enter the ID of the game you wish to update.");
         return;
     }
 
@@ -266,7 +272,10 @@ formUpdate.addEventListener('submit', async (event) => {
         rating: document.getElementById("new-rating").value
             ? Number(document.getElementById("new-rating").value)
             : null,
-        description: document.getElementById("new-description").value
+        description: document.getElementById("new-description").value,
+        
+        // NOVO: Pega a URL da imagem nova (para o update)
+        imageUrl: document.getElementById("new-image-url").value || null
     };
 
     try {
@@ -282,7 +291,7 @@ formUpdate.addEventListener('submit', async (event) => {
             if (response.status === 404) {
                 throw new Error("Game not found. Check if the ID is correct.");
             } else if (response.status === 400) {
-                throw new Error("Invalid Data. Check the fields filled in.");
+                throw new Error("Invalid data. Check the fields filled in.");
             } else {
                 throw new Error("Error updating the game on the server.");
             }
@@ -296,8 +305,8 @@ formUpdate.addEventListener('submit', async (event) => {
         formUpdate.reset();
         listingGames();
 
-    } catch (erro) {
-        console.error("Update error: ", erro);
-        alert(erro.message);
+    } catch (error) {
+        console.error("Update error: ", error);
+        alert(error.message);
     }
 });
