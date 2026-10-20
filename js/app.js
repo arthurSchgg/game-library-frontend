@@ -1,4 +1,4 @@
-const API_URL = "https://game-library-backend-ebrh.onrender.com/";
+const API_URL = "https://game-library-backend-ebrh.onrender.com/v1/game-library";
 
 // ==========================================
 // SINGLE FUNCTION TO CREATE THE GAME CARD
