@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -14,12 +14,12 @@
 
     <header>
         <div id="logo-library">
-            <img src="/img/transferir.png" alt="logotipo-library">
+            <img src="/img/transferir.png" alt="library-logo">
         </div>
     </header>
 
     <main>
-        
+
         <section class="add-games">
 
             <h2>Add Game to Library</h2>
@@ -31,6 +31,8 @@
                 <input id="genre" type="text" placeholder="Genre" required>
 
                 <input id="platform" type="text" placeholder="Platform" required>
+
+                <input id="image-url" type="url" placeholder="Image URL (e.g., https://...)">   
 
                 <input id="release-year" type="date" required>
 
@@ -63,7 +65,7 @@
 
                 <div class="search">
 
-                    <input type="number" id="id" placeholder="Digite o ID do jogo">
+                    <input type="number" id="id" placeholder="Enter the game ID">
 
                     <button id="search-by-id">
                         Search
@@ -82,7 +84,7 @@
 
                 <div class="search">
 
-                    <input type="text" id="search-title" placeholder="Digite o título do jogo">
+                    <input type="text" id="search-title" placeholder="Enter the game title">
 
                     <button id="search-by-title">
                         Search
@@ -108,6 +110,8 @@
                     <input id="new-genre" type="text" placeholder="New Genre" required>
 
                     <input id="new-platform" type="text" placeholder="New Platform" required>
+
+                    <input id="new-image-url" type="url" placeholder="New Image URL">
 
                     <input id="new-release-year" type="date" required>
 
