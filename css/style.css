@@ -127,13 +127,12 @@ form button:hover {
 }
 
 .game-card img.game-cover {
+    display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 460 / 215;
-    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
-    background-color: #2a2a2a;
+    background-color: #0f1218;
 }
 
 .game-info {
